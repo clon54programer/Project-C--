@@ -1,2 +1,2 @@
 @echo "Build library"
-zig build
+zig build --summary all
