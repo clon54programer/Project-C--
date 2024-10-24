@@ -21,6 +21,7 @@ __nota__: Debe ser ejecutado, luego de usar comando de construcion.
 
 ## Comando para ejecutar los test
 > zig build Test
+> zig build TestCpp
 
 __nota__: Si en la salida de consola, no aparece nada es que los test aun funcionado como deberian.
 
