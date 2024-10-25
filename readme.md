@@ -13,15 +13,15 @@ En esta prueba, uso aspectos del build system, como:
 # Comandos
 
 ## Comando para construir la biblioteca
-> zig build
+> zig build --summary all
 
 ## Comando para probar el codigo.
 > zig run .\main.zig -lmath -L.\zig-out\lib
 __nota__: Debe ser ejecutado, luego de usar comando de construcion.
 
 ## Comando para ejecutar los test
-> zig build Test
-> zig build TestCpp
+> zig build Test --summary all
+> zig build TestCpp --sumarry all
 
 __nota__: Si en la salida de consola, no aparece nada es que los test aun funcionado como deberian.
 
