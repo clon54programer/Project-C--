@@ -61,7 +61,7 @@ build system a identificar la ruta del archivo.
 
 El anterior forma funciona con codigo zig, si usa esta configuracion con codigo diferente,
 mandara un error al momento de analizar el codigo fuente, por esa razon voy a mostrar la forma 
-para construir un ejecutable con codigo C++ o C.
+para construir un ejecutable con codigo C++ o C, que sigue la misma estructura, pero debemos realizar unas configuraciones extras.
 
 ```zig
  const test_sumCpp = b.addExecutable(.{
@@ -77,16 +77,16 @@ solamente para codigo zig. Del resto de configuracion es la misma, pero con algu
 Debajo de la anterior configuracion se debe colocar lo siguiente.
 
 ```zig
-test_sumCpp.addIncludePath(b.path("include"));
-test_sumCpp.addCSourceFiles(.{ .files = &.{"test/TestSum.cpp"} });
-test_sumCpp.linkLibCpp();
-test_sumCpp.linkLibrary(lib);
+<nombre de la constante>.addIncludePath(b.path("include"));
+<nombre de la constante>.addCSourceFiles(.{ .files = &.{"test/TestSum.cpp"} });
+<nombre de la constante>.linkLibCpp();
+<nombre de la constante>.linkLibrary(lib);
 ```
 
-El metodo __addIncludePath__ especificamos al build system, la ubicacion de headers externos de 
+- El metodo __addIncludePath__ especificamos al build system, la ubicacion de headers externos de 
 la libreria estandar.
-El metodo __addCSourceFiles__ especificamos al build system, los archivos C++ para construir el ejecutable.
-El metodo __linkLibCpp__ especificamos al build system, que linke al ejecutable la libreria estandar de C++.
+- El metodo __addCSourceFiles__ especificamos al build system, los archivos C++ para construir el ejecutable.
+- El metodo __linkLibCpp__ especificamos al build system, que linke al ejecutable la libreria estandar de C++.
 Si, usted usa codigo se debe usar la siguiente funcion __linkLibC__.
 El metodo __linkLibrary__ especificamos al build system, que linkee una libreria externa.
 
