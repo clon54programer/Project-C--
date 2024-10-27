@@ -34,7 +34,7 @@ __nota__: Si en la salida de consola, no aparece nada es que los test aun funcio
 ## Como crear un ejecutable con el zig build System
 
 Para crear un ejecutable con el zig build system, primero debemos crear una constante,
-que debe ser inicializanda con el metodo __b.addExecuable__. Luego de est, debe
+que debe ser inicializanda con el metodo __b.addExecuable__. Luego de esto, debe
 inicializar una estructura de la siguiente manera:
 
 
@@ -47,11 +47,11 @@ const exe = b.addExecutable(.{
     });
 ```
 
-El atributo __name__ hace referencia al nombre del ejecutable.
-El atributo __target__ hace referencia al sistema o arquitetura que queremos compilar el programa.
-El atributo __optimize__ se refiere a las optimizaciones que desea que tenga el ejecutable, por default
+- El atributo __name__ hace referencia al nombre del ejecutable.
+- El atributo __target__ hace referencia al sistema o arquitetura que queremos compilar el programa.
+- El atributo __optimize__ se refiere a las optimizaciones que desea que tenga el ejecutable, por default
 esta en debug para permitir la depuracion del ejecutable con un depurador.
-El atributo __rout_source_file__ se refiere al archivo que contiene la funcion __pub fn main() !void__ de su
+- El atributo __rout_source_file__ se refiere al archivo que contiene la funcion __pub fn main() !void__ de su
 programa, ya que nuestro programa puede estar distribuido en diferentes archivos. Y, __b.path__ ayuda al
 build system a identificar la ruta del archivo.
 
