@@ -55,5 +55,51 @@ El atributo __rout_source_file__ se refiere al archivo que contiene la funcion _
 programa, ya que nuestro programa puede estar distribuido en diferentes archivos. Y, __b.path__ ayuda al
 build system a identificar la ruta del archivo.
 
+### Datos extras
+
+#### ¿Como construir un ejecutable con codigo C++ o C?
+
+El anterior forma funciona con codigo zig, si usa esta configuracion con codigo diferente,
+mandara un error al momento de analizar el codigo fuente, por esa razon voy a mostrar la forma 
+para construir un ejecutable con codigo C++ o C.
+
+```zig
+ const test_sumCpp = b.addExecutable(.{
+        .name = "SumCpp",
+        .target = target,
+        .optimize = optimize,
+    });
+```
+
+Si, se pregunta porque no hacemos referencia al __rout_source_file__ es porque ese opcion es valida
+solamente para codigo zig. Del resto de configuracion es la misma, pero con alguna opciones extras.
+
+Debajo de la anterior configuracion se debe colocar lo siguiente.
+
+```zig
+test_sumCpp.addIncludePath(b.path("include"));
+test_sumCpp.addCSourceFiles(.{ .files = &.{"test/TestSum.cpp"} });
+test_sumCpp.linkLibCpp();
+test_sumCpp.linkLibrary(lib);
+```
+
+El metodo __addIncludePath__ especificamos al build system, la ubicacion de headers externos de 
+la libreria estandar.
+El metodo __addCSourceFiles__ especificamos al build system, los archivos C++ para construir el ejecutable.
+El metodo __linkLibCpp__ especificamos al build system, que linke al ejecutable la libreria estandar de C++.
+Si, usted usa codigo se debe usar la siguiente funcion __linkLibC__.
+El metodo __linkLibrary__ especificamos al build system, que linkee una libreria externa.
+
+#### Comandos extras
+
+El metodo __linkSystemLibrary__ especificamos al build system, que linkee una libreria del sistema operativo
+al cual queremos compilar.
+
+El metodo __addLibraryPath__ especicamos al build system, la ubicacion de un libraria estatica o dinamica
+precompilada con anteridad. Por favor, verifique que la abi de la libreria sea compatible con la de zig,
+porque sino, mandara un error de linkeo.
+
+
+
 
 
