@@ -79,6 +79,8 @@ pub fn build(b: *std.Build) void {
     test_sumCpp.addCSourceFiles(.{ .files = &.{"test/TestSum.cpp"} });
     test_sumCpp.linkLibCpp();
     test_sumCpp.linkLibrary(lib);
+    //test_sum.addLibraryPath(directory_path: LazyPath)
+    //test_sumCpp.linkSystemLibrary(name: []const u8)
 
     b.installArtifact(test_sumCpp);
 
